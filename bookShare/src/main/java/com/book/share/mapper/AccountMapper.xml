@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.book.share.account.AccountMapper">
+
+<select id="accounts" resultType="com.book.share.account.AccountVO">
+	SELECT * FROM account
+</select>
+
+<insert id="signup" parameterType="com.book.share.account.AccountVO">
+	INSERT INTO ACCOUNT(
+		user_nickname, 
+		user_name, 
+		user_pw, 
+		user_email, 
+		user_phone, 
+		user_photo, 
+		user_regdate, 
+		user_pwchange)
+	 VALUES (
+		#{user_nickname},
+		#{user_name},
+		#{user_pw},
+		#{user_email},
+		#{user_phone},
+		#{user_photo},
+		#{user_regdate},
+		#{user_pwchange}
+	)
+</insert>
+
+<select id="getDual" resultType="java.lang.String">
+	SELECT NOW() FROM DUAL
+</select>
+
+
+</mapper>
