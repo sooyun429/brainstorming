@@ -28,6 +28,26 @@
 	)
 </insert>
 
+<select id="getUser" resultType="com.book.share.account.AccountVO" parameterType="String" >
+	SELECT * FROM ACCOUNT 
+	WHERE USER_NICKNAME = #{user_nickname}
+</select>
+
+<update id="accountUpdate" parameterType="com.book.share.account.AccountVO">
+	UPDATE ACCOUNT
+	SET user_nickname = #{user_nickname},
+		user_name = #{user_name},
+		user_email = #{user_email},
+		user_phone = #{user_phone},
+		user_photo = #{user_photo}
+	WHERE user_nickname = #{user_nickname}
+</update>
+
+<delete id="accountDelete" parameterType="String">
+	DELETE FROM ACCOUNT
+	WHERE user_nickname = #{user_nickname}
+</delete>
+
 <select id="getDual" resultType="java.lang.String">
 	SELECT NOW() FROM DUAL
 </select>

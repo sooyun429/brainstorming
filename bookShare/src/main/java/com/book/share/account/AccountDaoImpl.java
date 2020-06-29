@@ -13,12 +13,7 @@ public class AccountDaoImpl implements AccountDao {
 
 	@Autowired
 	private SqlSession sqlSession;
-	
-	@Override
-	public String getDual() throws SQLException {
-		AccountMapper mapper = sqlSession.getMapper(AccountMapper.class);
-		return mapper.getDual();
-	}
+
 	
 	@Override
 	public List<AccountVO> accounts() throws SQLException {
@@ -30,5 +25,30 @@ public class AccountDaoImpl implements AccountDao {
 	public boolean signup(AccountVO accountVO) throws SQLException{
 		AccountMapper mapper = sqlSession.getMapper(AccountMapper.class);
 		return mapper.signup(accountVO);
+	}
+	
+	@Override
+	public AccountVO getUser(String user_nickname) throws SQLException {
+		AccountMapper mapper = sqlSession.getMapper(AccountMapper.class);
+		return mapper.getUser(user_nickname);
+	}
+	
+
+	@Override
+	public boolean accountUpdate(AccountVO accountVO) throws SQLException {
+		AccountMapper mapper = sqlSession.getMapper(AccountMapper.class);
+		return mapper.accountUpdate(accountVO);
+	}
+	
+	@Override
+	public boolean accountDelete(String user_nickname) throws SQLException {
+		AccountMapper mapper = sqlSession.getMapper(AccountMapper.class);
+		return mapper.accountDelete(user_nickname);
+	}
+	
+	@Override
+	public String getDual() throws SQLException {
+		AccountMapper mapper = sqlSession.getMapper(AccountMapper.class);
+		return mapper.getDual();
 	}
 }
