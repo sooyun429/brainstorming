@@ -1,4 +1,4 @@
-package com.book.share.account;
+package com.food.account;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -52,3 +52,4 @@ public class AccountDaoImpl implements AccountDao {
 		return mapper.getDual();
 	}
 }
+

@@ -1,4 +1,4 @@
-package com.book.share.config;
+package com.food.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +17,7 @@ public class SwaggerConfig {
 	
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
-					.title("bookShare")
+					.title("나만의 냉장고")
 					.description("APIs")
 					.build();
 	}
@@ -25,7 +25,7 @@ public class SwaggerConfig {
 	@Bean
 	public Docket commonApi() {
 		return new Docket(DocumentationType.SWAGGER_2)
-				.groupName("bookShare")
+				.groupName("myFood")
 				.apiInfo(this.apiInfo())
 				.select()
 				.apis(RequestHandlerSelectors.basePackage("com.book.share"))

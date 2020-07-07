@@ -1,4 +1,4 @@
-package com.book.share.config;
+package com.food.config;
 
 import io.swagger.annotations.ApiModelProperty;
 

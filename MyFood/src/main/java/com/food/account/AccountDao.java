@@ -1,4 +1,4 @@
-package com.book.share.account;
+package com.food.account;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -10,5 +10,4 @@ public interface AccountDao {
 	public boolean accountUpdate(AccountVO accountVO) throws SQLException;
 	public boolean accountDelete(String user_nickname) throws SQLException;
 	public String getDual() throws SQLException;
-
 }

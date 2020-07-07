@@ -1,13 +1,13 @@
-package com.book.share;
+package com.food;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BookShareApplication {
+public class MyFoodApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BookShareApplication.class, args);
+		SpringApplication.run(MyFoodApplication.class, args);
 	}
 
 }
