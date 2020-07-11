@@ -1,5 +1,9 @@
 package com.food.account;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class AccountVO {
 	
 	
@@ -17,6 +21,39 @@ public class AccountVO {
 	private String user_kcal; // 권장 칼로리
 	private String user_state; // 식단 상태?
 	
+	private String roles;
+	private String permissions;
+	private int active;
+	public int getActive() {
+		return active;
+	}
+
+	public void setActive(int active) {
+		this.active = active;
+	}
+
+	public List<String> getRoles() {
+		
+		if(this.roles != null) {
+			return Arrays.asList(this.roles.split(","));
+		}
+		return new ArrayList<>();
+	}
+	
+	public void setRoles(String roles) {
+		this.roles = roles;
+	}
+	
+	public List<String> getPermissions() {
+		if(this.permissions != null) {
+			return Arrays.asList(this.permissions.split(","));
+		}
+		return new ArrayList<>();
+	}
+	
+	public void setPermissions(String permissions) {
+		this.permissions = permissions;
+	}
 	public String getUser_nickname() {
 		return user_nickname;
 	}

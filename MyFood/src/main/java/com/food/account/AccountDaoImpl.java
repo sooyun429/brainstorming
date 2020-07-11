@@ -47,6 +47,20 @@ public class AccountDaoImpl implements AccountDao {
 	}
 	
 	@Override
+	public AccountVO findByUsername(String user_nickname) {
+		AccountMapper mapper = sqlSession.getMapper(AccountMapper.class);
+		return mapper.findByUsername(user_nickname);
+	}
+	
+	@Override
+	public AccountVO signin(String user_nickname, String user_password) throws SQLException {
+		
+		AccountMapper mapper = sqlSession.getMapper(AccountMapper.class);
+		
+		return mapper.signin(user_nickname, user_password);
+	}
+	
+	@Override
 	public String getDual() throws SQLException {
 		AccountMapper mapper = sqlSession.getMapper(AccountMapper.class);
 		return mapper.getDual();

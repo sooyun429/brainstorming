@@ -4,10 +4,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.food.account.AccountDao;
@@ -18,7 +14,6 @@ public class AccountServiceImpl implements AccountService{
 	@Autowired
 	AccountDao dao;
 	
-	private PasswordEncoder passwordEncoder;
 	
 	@Override
 	public List<AccountVO> accounts() throws SQLException {
@@ -27,7 +22,7 @@ public class AccountServiceImpl implements AccountService{
 	
 	@Override
 	public boolean signup(AccountVO accountVO) throws SQLException {
-		accountVO.setUser_pw(passwordEncoder.encode(accountVO.getUser_pw()));
+		accountVO.setUser_pw(accountVO.getUser_pw());
 		return dao.signup(accountVO);
 	}
 	
@@ -44,6 +39,16 @@ public class AccountServiceImpl implements AccountService{
 	@Override
 	public boolean accountDelete(String user_nickname) throws SQLException {
 		return dao.accountDelete(user_nickname);
+	}
+	
+	@Override
+	public AccountVO findByUsername(String user_nickname) {
+		return dao.findByUsername(user_nickname);
+	}
+	
+	@Override
+	public AccountVO signin(String user_nickname, String user_password) throws SQLException {
+		return dao.signin(user_nickname, user_password);
 	}
 	
 	@Override

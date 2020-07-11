@@ -3,15 +3,20 @@ package com.food.account;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.food.config.BasicResponse;
+import com.food.jwt.JwtService;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -24,11 +29,15 @@ import io.swagger.annotations.ApiResponses;
 
 
 @Controller
-@RequestMapping(value = "/account")
+@CrossOrigin
+@RequestMapping(value = "/api")
 public class AccountController {
 	
 	@Autowired
 	AccountService service;
+	
+	@Autowired
+	private JwtService jwtService;
 	
 	@ResponseBody
 	@RequestMapping(value = "/accounts", method=RequestMethod.GET, produces = "application/json;charset=UTF-8")
@@ -48,18 +57,19 @@ public class AccountController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/signup", method=RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value="/user/signup", method=RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ApiOperation(value = "회원가입")
-	public Object signup(@RequestBody AccountVO accountVO) throws SQLException {
-		
-		
+	public Object signup(@RequestBody AccountVO accountVO, HttpServletResponse res) throws SQLException {
 		// 회원 검증은 아직 없음.
-		
 		BasicResponse result = new BasicResponse();
 		result.status = true;
 		if(service.signup(accountVO)) {
 			result.data = "success";
 			result.object = "회원가입에 성공했습니다";
+			
+			String token = jwtService.create(accountVO);
+			res.setHeader("jwt-auth-token", token);
+		
 		} else {
 			result.data = "false";
 			result.object = "회원가입에 실패했습니다.";
@@ -70,8 +80,9 @@ public class AccountController {
 	}
 	
 	
+	
 	@ResponseBody
-	@RequestMapping(value = "/{user_nickname}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/user/{user_nickname}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	@ApiOperation(value = "회원정보")
 	public Object getUser(@PathVariable(required = true) String user_nickname) throws SQLException {
 		
@@ -139,6 +150,24 @@ public class AccountController {
 			result.data = "false";
 			result.object = "존재하지 않는 회원입니다.";
 		}
+		
+		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/user/signin", method = RequestMethod.POST)
+	private Object signin(@RequestParam String user_nickname, @RequestParam String user_password, HttpServletResponse res) throws SQLException {
+		BasicResponse result = new BasicResponse();
+		result.status = true;
+
+		AccountVO accountVO = service.signin(user_nickname, user_password);
+		System.out.println(accountVO);
+		String token = jwtService.create(accountVO);
+		
+		res.setHeader("jwt-auth-token", token);
+		result.data = "success";
+		result.object = accountVO;
+		
 		
 		return result;
 	}

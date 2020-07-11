@@ -11,5 +11,9 @@ public interface AccountService {
 	public AccountVO getUser(String user_nickname) throws SQLException;
 	public boolean accountUpdate(AccountVO accountVO) throws SQLException;
 	public boolean accountDelete(String user_nickname) throws SQLException;
+	public AccountVO signin(String user_nickname, String user_password) throws SQLException;
 	public String getDual() throws SQLException;
+	
+	//spring security
+	public AccountVO findByUsername(String user_nickname);
 }
