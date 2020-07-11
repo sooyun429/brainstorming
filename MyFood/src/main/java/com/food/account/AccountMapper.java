@@ -13,9 +13,12 @@ public interface AccountMapper {
 	public AccountVO getUser(String user_nickname) throws SQLException;
 	public boolean accountUpdate(AccountVO accountVO) throws SQLException;
 	public boolean accountDelete(String user_nickname) throws SQLException;
-	public AccountVO signin(String user_nickname,String user_password) throws SQLException;
+	public Object signin(String user_nickname,String user_password) throws SQLException;
 	public String getDual() throws SQLException;
 	
+	//signup 검증
+	public Object getUserEmail(String user_email) throws SQLException;
+	public Object getUserPhone(String user_phone) throws SQLException;
 	//spring security
-	public AccountVO findByUsername(String user_nickname);
+	public Object findByUsername(String user_nickname);
 }

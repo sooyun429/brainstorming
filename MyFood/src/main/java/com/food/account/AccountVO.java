@@ -23,12 +23,14 @@ public class AccountVO {
 	
 	private String roles;
 	private String permissions;
-	private int active;
-	public int getActive() {
+	private String active;
+	
+	
+	public String getActive() {
 		return active;
 	}
 
-	public void setActive(int active) {
+	public void setActive(String active) {
 		this.active = active;
 	}
 

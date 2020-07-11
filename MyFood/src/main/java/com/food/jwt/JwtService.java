@@ -52,10 +52,22 @@ public class JwtService {
 
 	}
 	
-	public void CheckValid(String jwt) {
+	public boolean CheckValid(String jwt) {
 		
-		Jwts.parser().setSigningKey(salt.getBytes()).parseClaimsJws(jwt);
-
+		 Claims claims = Jwts.parser().setSigningKey(salt.getBytes()).parseClaimsJws(jwt).getBody();
+		 
+		 if ((Integer)claims.get("exp") > 0) {
+			 return true;
+		 }
+		 return false;
+	}
+	
+	public String CheckUserNickname(String jwt) {
+		Claims claims = Jwts.parser().setSigningKey(salt.getBytes()).parseClaimsJws(jwt).getBody();
+		
+		@SuppressWarnings("unchecked")
+		String result = (String) ((Map<String, Object>)claims.get("User")).get("user_nickname");
+		return result != null ? result: "";
 	}
 	
 	public Map<String, Object> get(String jwt) {

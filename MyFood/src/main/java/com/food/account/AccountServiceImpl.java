@@ -22,7 +22,7 @@ public class AccountServiceImpl implements AccountService{
 	
 	@Override
 	public boolean signup(AccountVO accountVO) throws SQLException {
-		accountVO.setUser_pw(accountVO.getUser_pw());
+				
 		return dao.signup(accountVO);
 	}
 	
@@ -42,13 +42,35 @@ public class AccountServiceImpl implements AccountService{
 	}
 	
 	@Override
-	public AccountVO findByUsername(String user_nickname) {
+	public boolean findByUsername(String user_nickname) {
 		return dao.findByUsername(user_nickname);
 	}
 	
 	@Override
-	public AccountVO signin(String user_nickname, String user_password) throws SQLException {
-		return dao.signin(user_nickname, user_password);
+	public boolean getUserEmail(String user_email) throws SQLException {
+		return dao.getUserEmail(user_email);
+	}
+	
+	@Override
+	public boolean getUserPhone(String user_phone) throws SQLException {
+		return dao.getUserPhone(user_phone);
+	}
+	
+	
+	@Override
+	public Object signin(String user_nickname, String user_password) throws SQLException {
+		AccountVO find_account = dao.getUser(user_nickname);
+		if (find_account != null) {
+			if (find_account.getUser_pw().equals(user_password) ) {
+				
+				return find_account;
+			} else {
+				return "DIFFPW";
+			} 
+			
+		} else {
+			return "DIFFID";
+		}
 	}
 	
 	@Override

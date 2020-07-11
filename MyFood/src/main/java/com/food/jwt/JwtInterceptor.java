@@ -23,7 +23,8 @@ public class JwtInterceptor implements HandlerInterceptor {
 			
 			String token = request.getHeader("jwt-auth-token");
 			if(token != null & token.length() > 0) {
-				jwtService.CheckValid(token);
+				boolean jwtCheckExp = jwtService.CheckValid(token);
+				if (jwtCheckExp == false) return false;
 				return true;
 			}
 			else {

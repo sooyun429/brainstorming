@@ -6,29 +6,35 @@
 	SELECT * FROM account
 </select>
 
-<insert id="signup" parameterType="com.food.account.AccountVO">
+<insert id="signup">
 	INSERT INTO ACCOUNT(
 		user_nickname, 
 		user_pw, 
 		user_email, 
-		user_phone, 
-		user_photo, 
-		user_regdate, 
-		user_pwchange)
+		user_phone,
+		user_age,
+		user_height,
+		user_weight,
+		user_kcal,
+		user_state
+	)
 	 VALUES (
 		#{user_nickname},
 		#{user_pw},
 		#{user_email},
 		#{user_phone},
-		#{user_photo},
-		#{user_regdate},
-		#{user_pwchange}
+		#{user_age},
+		#{user_height},
+		#{user_weight},
+		#{user_kcal},
+		#{user_state}
 	)
 </insert>
 
 <select id="getUser" resultType="com.food.account.AccountVO" parameterType="String" >
 	SELECT * FROM ACCOUNT 
 	WHERE USER_NICKNAME = #{user_nickname}
+	LIMIT 1
 </select>
 
 <update id="accountUpdate" parameterType="com.food.account.AccountVO">
@@ -46,15 +52,29 @@
 	WHERE user_nickname = #{user_nickname}
 </delete>
 
-<select id="findByUsername" resultType="com.food.account.AccountVO" parameterType="String" >
+<select id="getUserEmail" resultType="boolean" parameterType="String">
+ SELECT * FROM ACCOUNT
+ WHERE USER_EMAIL = #{user_email}
+ LIMIT 1
+</select>
+
+<select id="getUserPhone" resultType="boolean" parameterType="String">
+SELECT * FROM ACCOUNT
+WHERE user_phone = #{user_phone}
+LIMIT 1
+</select>
+
+<select id="findByUsername" resultType="boolean" parameterType="String" >
 	SELECT * FROM ACCOUNT 
 	WHERE USER_NICKNAME = #{user_nickname}
+	LIMIT 1
 </select>
 
 <select id="signin" resultType="com.food.account.AccountVO" parameterType="String">
 	SELECT * FROM ACCOUNT
 	WHERE user_nickname = #{0}
 	AND user_pw = #{1}
+	LIMIT 1
 </select>
 
 <select id="getDual" resultType="java.lang.String">
