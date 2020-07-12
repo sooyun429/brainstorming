@@ -29,8 +29,13 @@
 
   - ADD : 새 파일 작성 및 코드 추가
   - MOD : 기존 코드 수정
+- DEL : 코드 및 파일 삭제
 
-  - DEL : 코드 및 파일 삭제
+
+
+### Theme Color
+
+![Theme Color](Theme Color.jpeg)
 
 
 
@@ -49,4 +54,5 @@
 - [Front] Vue 환경셋팅 (윤도희, 임우섭_200712)
 - [공통] commit message 형식 지정 (회의_200712)
 - [Front] Vue 프로젝트 생성 (임우섭_200712)
+- [Front] Fix theme color (윤도희_200712)
 - [Front] Router 추가_Signup, Login, Logout, Main (윤도희 _200712)
