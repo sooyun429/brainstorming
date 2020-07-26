@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.food.account.AccountDao;
 import com.food.account.AccountVO;
+import com.food.jwt.BCryptImpl;
 
 @Service
 public class AccountServiceImpl implements AccountService{
@@ -59,14 +60,14 @@ public class AccountServiceImpl implements AccountService{
 	
 	@Override
 	public Object signin(String user_nickname, String user_password) throws SQLException {
+		BCryptImpl bcrypt = new BCryptImpl();
+		
 		AccountVO find_account = dao.getUser(user_nickname);
 		if (find_account != null) {
-			if (find_account.getUser_pw().equals(user_password) ) {
-				
-				return find_account;
-			} else {
-				return "DIFFPW";
-			} 
+			
+			if (bcrypt.isMatch(user_password, find_account.getUser_pw())) return find_account;
+			
+			else return "DIFFPW";
 			
 		} else {
 			return "DIFFID";
