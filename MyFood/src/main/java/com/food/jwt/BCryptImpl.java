@@ -6,7 +6,7 @@ public class BCryptImpl implements EncryptHelper {
 	
 	@Override
 	public String encrypt(String user_password) {
-		return BCrypt.hashpw(user_password, BCrypt.gensalt(10));
+		return BCrypt.hashpw(user_password, BCrypt.gensalt());
 	}
 	
 	@Override

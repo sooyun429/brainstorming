@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import com.food.jwt.BCryptImpl;
 
+import net.bytebuddy.dynamic.TypeResolutionStrategy.Passive;
+
 @Repository
 public class AccountDaoImpl implements AccountDao {
 	
@@ -59,7 +61,6 @@ public class AccountDaoImpl implements AccountDao {
 	public Object signin(String user_nickname, String user_password) throws SQLException {
 		
 		AccountMapper mapper = sqlSession.getMapper(AccountMapper.class);
-		
 		return mapper.signin(user_nickname, user_password);
 	}
 	

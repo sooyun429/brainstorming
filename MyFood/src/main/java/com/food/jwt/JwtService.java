@@ -34,14 +34,13 @@ public class JwtService {
 		JwtBuilder builder = Jwts.builder(); 
 		// JWT TOKEN = HEADER + PAYLOAD + SIGNAGURE
 		
-		
 		// HEADER 설정
 		builder.setHeaderParam("typ", "JWT");
 		
 		// PAYLOAD 설정
 		builder.setSubject("payload")
 				.setExpiration(new Date(System.currentTimeMillis()+1000*60*expireMin))
-				.claim("User", account);
+				.claim("User_IN_FO", account.getUser_nickname());
 		
 		builder.signWith(SignatureAlgorithm.HS256, salt.getBytes());
 		
