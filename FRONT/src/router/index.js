@@ -7,14 +7,12 @@ const routes = [
   {
     path: "/",
     name: "Main",
-    component: () =>
-      import ("../views/Main.vue")
+    component: () => import("../views/Main.vue")
   },
   {
     path: "/signup",
     name: "Signup",
-    component: () =>
-      import("../views/Signup.vue")
+    component: () => import("../views/Signup.vue")
   },
   {
     path: "/login",
@@ -28,9 +26,8 @@ const routes = [
   {
     path: "/logout",
     name: "Logout",
-    component: () =>
-      import("../views/Logout.vue")
-  },
+    component: () => import("../views/Logout.vue")
+  }
 ];
 
 const router = new VueRouter({
