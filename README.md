@@ -15,10 +15,6 @@
 
 ### Back
 
-- 
-
-
-
 ## Convention
 
 ### Commit message
@@ -29,15 +25,16 @@
 
   - ADD : 새 파일 작성 및 코드 추가
   - MOD : 기존 코드 수정
-- DEL : 코드 및 파일 삭제
+  - DEL : 코드 및 파일 삭제
 
+### Naming Rule
 
+- File: Upper Camel Case (Pascal Case) (ex. UpperCamelCase)
+- Variable: Lower Camel Case (ex. LowerCamelCase)
 
 ### Theme Color
 
 ![Theme Color](Theme Color.jpeg)
-
-
 
 ## Scrum
 
@@ -56,3 +53,4 @@
 - [Front] Vue 프로젝트 생성 (임우섭_200712)
 - [Front] Fix theme color (윤도희_200712)
 - [Front] Router 추가_Signup, Login, Logout, Main (윤도희 _200712)
+- [공통] Convention_Naming Rule 추가 (김현지, 윤도희, 황인규 _200726)
