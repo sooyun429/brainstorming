@@ -75,8 +75,12 @@ for pageNum in range(1, 201): # 8000개 수집 예정 (200 페이지)
         # print(orders)
 
         # sheet.append(["음식명", "인분", "조리시간", "난이도", "재료", "동영상url", "조리과정"])
-        sheet.append([dishName, peopleCount, time, level, ingredients, videoUrl, orders])
+        sheet.append([dishName, peopleCount, time, level, ingredients, videoUrl, ", ".join(orders)])
         break
+    break
 
-# # 크롬창 닫기
-# # driver.close()
+# 크롬창 닫기
+driver.close()
+
+# 워크북(엑셀파일)을 원하는 이름으로 저장
+f.save('RecipeCrawling.csv')
