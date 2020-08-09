@@ -15,10 +15,6 @@
 
 ### Back
 
-- 
-
-
-
 ## Convention
 
 ### Commit message
@@ -26,6 +22,7 @@
 - 기본 형식: [STATUS] MESSAGE | DATE | AUTHOR (ex. [ADD] Init vue project | 200712 | DH)
 
 - STATUS 종류
+
   - ADD : 새 파일 작성 및 코드 추가
   - MOD : 기존 코드 수정
   - DEL : 코드 및 파일 삭제
