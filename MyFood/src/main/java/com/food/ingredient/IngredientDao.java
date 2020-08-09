@@ -16,7 +16,7 @@ public class IngredientDao {
 	public List<IngredientVO> ingredients() throws SQLException{
 		IngredientMapper mapper = sqlSession.getMapper(IngredientMapper.class);
 		return mapper.ingredients();
-	}
+	}                     
 	
 	public IngredientVO getIngredient(String name) throws SQLException{
 		IngredientMapper mapper = sqlSession.getMapper(IngredientMapper.class);
